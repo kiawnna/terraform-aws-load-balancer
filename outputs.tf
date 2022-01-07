@@ -11,7 +11,7 @@ output "lb_zone_id" {
   value = aws_lb.ALB.id
 }
 output "listener_443_arn" {
-  value = aws_lb_listener.https[count.index].arn
+  value = aws_lb_listener.https.*.arn
 }
 output "load_balancer_arn_suffix" {
   value = aws_lb.ALB.arn_suffix
