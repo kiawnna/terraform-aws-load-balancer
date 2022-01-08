@@ -10,7 +10,6 @@ variable "security_groups" {
 }
 variable "subnets" {
   type = list(string)
-  default = null
 }
 variable "cert_arn" {
   type = string

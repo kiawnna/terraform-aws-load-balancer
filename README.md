@@ -1,13 +1,18 @@
 # terraform-aws-load-balancer
 An opinionated module that creates an application load balancer with two listeners: one for http and one for https.
 
+Subnets are required **
+If you choose to create the listeners, you must pass in a certificate arn.
+
 ## Instantiation
-The simplest instantiation requires only an environment.
+The simplest instantiation requires only an `environment`, `subnets` and a `cert_arn` (if you want listeners created).
 
 ```
 module "application_lb" {
   source = "git@github.com:kiawnna/terraform-aws-load-balancer.git"
   environment = "dev"
+  subnets = ["subnet-id1", "subnet-id2"]
+  cert_arn = "cert-arn"
 }
 ```
 > This example will create an external application load balancer and two listeners, one for http traffic and one for https.
@@ -25,11 +30,11 @@ module "application_lb" {
 }
 ```
 > This example will create an application load balancer, external, without listeners. This will associate a security group with the
-> load balancer and attach two subnets to the load balancer.
+> load balancer as well.
 
 
 ## Resources Created
-* A load balancer, defaults to internet-facing and application
+* A load balancer, which defaults to internet-facing and application
 * By default, both a http and https listener (can optionally exclude by setting `create_listeners` to *false*).
 * Optionally, a cookie stickiness policy for port 443 on the load balancer by setting `add_sticky_policy` to *true*.
 
