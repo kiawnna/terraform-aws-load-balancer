@@ -11,7 +11,7 @@ output "lb_zone_id" {
   value = aws_lb.ALB.zone_id
 }
 output "listener_443_arn" {
-  value = var.create_listeners == true ? aws_lb_listener.https.arn : null
+  value = var.create_listeners == true ? aws_lb_listener.https[0].arn : null
 }
 output "load_balancer_arn_suffix" {
   value = aws_lb.ALB.arn_suffix
